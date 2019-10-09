@@ -2,8 +2,7 @@
 upstream namedefine {
   server Your IP;
  }
-
-  server {
+server {
       listen 80;
 #      listen 443 ssl http2;
 #       server_name nginx1.mageuni.com;
@@ -24,6 +23,7 @@ upstream namedefine {
         proxy_set_header Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_redirect off;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_pass http://namedefine;
         }
 }
